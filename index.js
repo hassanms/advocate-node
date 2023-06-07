@@ -5,11 +5,14 @@ const meetings = require('./routes/MeetingsRoute')
 const timeEntries = require('./routes/TimeEntriesRoute')
 var cors = require('cors')
 const port = 4000;
-const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with the URL of your frontend application
-};
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with the URL of your frontend application
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  optionsSuccessStatus: 200,
+}));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 var uri = "mongodb+srv://hassanmuhammadsaddique:m4C0CxIAO4dxtWOn@cluster0.fsllozj.mongodb.net/bookfair";
@@ -24,6 +27,8 @@ connection.once("open", function() {
 app.get('/',(req,res)=>{
     res.send('welcome')
 })
+app.options('/api/meetings', cors());
+app.options('/api/timeslots', cors());
 
 app.use("/api/meetings", meetings);
 app.use("/api/timeslots", timeEntries);
