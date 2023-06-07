@@ -6,11 +6,7 @@ const timeEntries = require('./routes/TimeEntriesRoute')
 var cors = require('cors')
 const port = 4000;
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Replace with the URL of your frontend application
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  optionsSuccessStatus: 200,
-}));
+app.use(cors());
 
 
 app.use(express.json());
@@ -27,9 +23,6 @@ connection.once("open", function() {
 app.get('/',(req,res)=>{
     res.send('welcome')
 })
-app.options('/api/meetings', cors());
-app.options('/api/timeslots', cors());
-
 app.use("/api/meetings", meetings);
 app.use("/api/timeslots", timeEntries);
 
