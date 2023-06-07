@@ -5,7 +5,11 @@ const meetings = require('./routes/MeetingsRoute')
 const timeEntries = require('./routes/TimeEntriesRoute')
 var cors = require('cors')
 const port = 4000;
-app.use(cors())
+const corsOptions = {
+  origin: 'http://localhost:3000', // Replace with the URL of your frontend application
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 var uri = "mongodb+srv://hassanmuhammadsaddique:m4C0CxIAO4dxtWOn@cluster0.fsllozj.mongodb.net/bookfair";
