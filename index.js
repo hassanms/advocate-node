@@ -7,6 +7,7 @@ var cors = require('cors')
 const port = 4000;
 app.use(cors())
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 var uri = "mongodb+srv://hassanmuhammadsaddique:m4C0CxIAO4dxtWOn@cluster0.fsllozj.mongodb.net/bookfair";
 mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
